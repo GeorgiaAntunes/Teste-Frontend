@@ -1,4 +1,3 @@
-"use client"; 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schema } from "../schemas/cepSchema";
@@ -8,7 +7,6 @@ import { useState } from "react";
 
 export type FormData = z.infer<typeof schema>;
 
-// Definindo as chaves do objeto de endereço
 type AddressFields = "logradouro" | "bairro" | "cidade" | "estado";
 
 export const useCepForm = () => {

@@ -8,14 +8,14 @@ const HomeContainer = styled('div')`
 `;
 
 const HomeTitle = styled('h1')`
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-bottom: 2rem;
 `;
 
 export default function Home() {
   return (
     <HomeContainer>
-      <HomeTitle>Bem-vindo à Home Page</HomeTitle>
+      {/* <HomeTitle>Desafio Frontend Instivo</HomeTitle> */}
       <AppForm />
     </HomeContainer>
   );

@@ -1,4 +1,5 @@
-import { Button } from "@mui/material";
+import { StyledButton } from "./FormButton.style";
+
 
 interface FormButtonProps {
   onClick?: () => void;
@@ -7,7 +8,7 @@ interface FormButtonProps {
 }
 
 export const FormButton: React.FC<FormButtonProps> = ({ onClick, type = "button", label }) => (
-  <Button variant="contained" type={type} onClick={onClick} fullWidth>
+  <StyledButton variant="contained" type={type} onClick={onClick} fullWidth>
     {label}
-  </Button>
+  </StyledButton>
 );
