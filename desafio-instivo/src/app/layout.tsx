@@ -1,5 +1,9 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Geist, Geist_Mono } from "next/font/google";
+import { CssBaseline, ThemeProvider } from "@mui/material"; 
+import { theme } from "./theme/theme";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -11,11 +15,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Teste Instivo",
-  description: "Teste frontend para Instivo",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -24,7 +23,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

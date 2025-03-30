@@ -7,15 +7,9 @@ const HomeContainer = styled('div')`
   text-align: center;
 `;
 
-const HomeTitle = styled('h1')`
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-`;
-
 export default function Home() {
   return (
     <HomeContainer>
-      {/* <HomeTitle>Desafio Frontend Instivo</HomeTitle> */}
       <AppForm />
     </HomeContainer>
   );

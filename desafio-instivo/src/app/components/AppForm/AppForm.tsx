@@ -10,6 +10,7 @@ import {
   Header,
 } from "./AppForm.style";
 import { InputContainer } from "../FormInput/FormInput.style";
+import { LABELS, TEXTS } from "@/app/constants/texts";
 
 export const AppForm: React.FC = () => {
   const {
@@ -24,11 +25,11 @@ export const AppForm: React.FC = () => {
 
   return (
     <FormContainer>
-      <Header>Busca CEP</Header>
+      <Header>{TEXTS.buscaCep}</Header>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <InputContainer>
           <FormInput
-            name="cep"
+            name={LABELS.cep}
             control={control}
             placeholder="CEP"
             onBlur={handleCepBlur}
@@ -38,7 +39,7 @@ export const AppForm: React.FC = () => {
 
         <InputContainer>
           <FormInput
-            name="logradouro"
+            name={LABELS.logradouro}
             control={control}
             placeholder="Logradouro"
             error={errors.logradouro?.message}
@@ -47,7 +48,7 @@ export const AppForm: React.FC = () => {
 
         <InputContainer>
           <FormInput
-            name="complemento"
+           name={LABELS.complemento}
             control={control}
             placeholder="Complemento"
           />
@@ -55,7 +56,7 @@ export const AppForm: React.FC = () => {
 
         <InputContainer>
           <FormInput
-            name="bairro"
+            name={LABELS.bairro}
             control={control}
             placeholder="Bairro"
             error={errors.bairro?.message}
@@ -64,7 +65,7 @@ export const AppForm: React.FC = () => {
 
         <InputContainer>
           <FormInput
-            name="cidade"
+            name={LABELS.cidade}
             control={control}
             placeholder="Cidade"
             error={errors.cidade?.message}
@@ -73,7 +74,7 @@ export const AppForm: React.FC = () => {
 
         <InputContainer>
           <FormInput
-            name="estado"
+            name={LABELS.estado}
             control={control}
             placeholder="Estado"
             error={errors.estado?.message}
@@ -87,8 +88,8 @@ export const AppForm: React.FC = () => {
         )}
 
         <ButtonContainer>
-          <FormButton onClick={handleClear} label="Limpar" />
-          <FormButton type="submit" label="Salvar" />
+          <FormButton onClick={handleClear} label={LABELS.limpar} />
+          <FormButton type="submit" label={LABELS.salvar} />
         </ButtonContainer>
       </StyledForm>
     </FormContainer>
