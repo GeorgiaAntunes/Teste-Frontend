@@ -1,7 +1,9 @@
 
 export const TEXTS = {
-    buscaCep: "Busca CEP",
-} as const;
+    buscaCep: "Erro ao buscar CEP",  
+    sucessoSalvar: "Dados salvos com sucesso!", 
+    erroSalvar: "Erro ao salvar os dados",  
+  } as const;
 
 export const LABELS = {
     bairro: "bairro",

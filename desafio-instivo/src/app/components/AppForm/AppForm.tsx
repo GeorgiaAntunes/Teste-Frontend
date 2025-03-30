@@ -75,7 +75,7 @@ import { FormButton } from "../FormButton/FormButton";
  
        <ButtonContainer>
          <FormButton onClick={handleClear} label="Limpar" />
-         <FormButton type="submit" label="Salvar" />
+         <FormButton type="submit" label="Salvar" onClick={handleSubmit(onSubmit)}/>
        </ButtonContainer>
      </StyledForm>
      </FormContainer>
