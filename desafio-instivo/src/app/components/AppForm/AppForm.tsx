@@ -1,13 +1,11 @@
 import { Box, CircularProgress } from "@mui/material";
- import { useCepForm } from "@/app/viewmodels/useCepForm";
- import { ButtonContainer, FormContainer, StyledForm } from "./AppForm.style";
+import { useCepForm } from "@/app/viewmodels/useCepForm";
+import { ButtonContainer, FormContainer, StyledForm } from "./AppForm.style";
 import { InputContainer } from "../FormInput/FormInput.style";
 import FormInput from "../FormInput/FormInput";
 import { FormButton } from "../FormButton/FormButton";
  
- 
- 
- export const AppForm: React.FC = () => {
+export const AppForm: React.FC = () => {
    const { control, handleSubmit, handleCepBlur, handleClear, onSubmit, errors, loading } = useCepForm();
  
    return (
