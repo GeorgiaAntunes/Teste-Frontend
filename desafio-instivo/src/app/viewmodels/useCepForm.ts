@@ -1,11 +1,10 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schema } from "../schemas/cepSchema";
-import { z } from "zod";
 import { useState } from "react";
 import { getAddressByCep } from "../services/cepService";
 import { TEXTS } from "../constants/texts";
-
+import { z } from "zod";
 
 export type FormData = z.infer<typeof schema>;
 
@@ -17,6 +16,7 @@ export const useCepForm = () => {
     watch,
     reset,
     control,
+    setError,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -32,14 +32,15 @@ export const useCepForm = () => {
 
   const [loading, setLoading] = useState<boolean>(false);
 
-  
-
   const handleCepBlur = async () => {
     const cep = watch("cep").replace(/\D/g, "");
     const isValidCep = /^\d{8}$/.test(cep);
-    
-    if (!isValidCep) return;
-  
+
+    if (!isValidCep) {
+      setError("cep", { type: "manual", message: "CEP inválido" });
+      return;
+    }
+
     setLoading(true);
     try {
       const data = await getAddressByCep(cep);
@@ -47,9 +48,13 @@ export const useCepForm = () => {
         (["logradouro", "bairro", "cidade", "estado", "complemento"] as const).forEach((field) => {
           setValue(field, data[field] || "");
         });
+        setError("cep", { type: "manual", message: "" });
+      } else {
+        setError("cep", { type: "manual", message: "CEP não encontrado" });
       }
     } catch (error) {
-      console.error(TEXTS.buscaCep, error); 
+      console.error(TEXTS.buscaCep, error);
+      setError("cep", { type: "manual", message: "Erro ao buscar o CEP" });
     } finally {
       setLoading(false);
     }
@@ -64,12 +69,13 @@ export const useCepForm = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-  
+
       if (!response.ok) {
         throw new Error(TEXTS.erroSalvar);
       }
-  
-      console.log(TEXTS.sucessoSalvar); 
+
+      console.log(TEXTS.sucessoSalvar);
+      reset();
     } catch (error) {
       console.error(TEXTS.erroSalvar, error);
     }
