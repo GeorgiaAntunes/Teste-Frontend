@@ -1,10 +1,10 @@
-import { Control, Controller } from "react-hook-form";
+import {  Controller } from "react-hook-form";
 import { StyledTextField } from "./FormInput.style";
 
 interface FormInputProps {
   name: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  control: Control<any>;
+  control: any;
   placeholder: string;
   error?: string;
   onBlur?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
@@ -23,16 +23,14 @@ const FormInput: React.FC<FormInputProps> = ({
       control={control}
       render={({ field }) => (
         <StyledTextField
-          {...field}
-          fullWidth
-          variant="outlined"
-          placeholder={placeholder}
-          error={!!error}
-          helperText={error}
-          onBlur={(e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-            field.onBlur();
-            onBlur?.(e);
-          }}
+        {...field}
+        label={placeholder}
+        variant="outlined"
+        fullWidth
+        margin="normal"
+        onBlur={onBlur}
+        error={!!error}
+        helperText={error}
         />
       )}
     />

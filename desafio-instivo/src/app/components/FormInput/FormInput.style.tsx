@@ -56,7 +56,6 @@ export const StyledTextField = styled(TextField)`
 
 export const InputContainer = styled("div")`
   width: 100%;
-  margin: 10px 0;
 
   @media (max-width: 768px) {
     margin: 8px 0;
