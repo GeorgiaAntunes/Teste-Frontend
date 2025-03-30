@@ -31,6 +31,8 @@ export const useCepForm = () => {
 
   const [loading, setLoading] = useState<boolean>(false);
 
+  
+
   const handleCepBlur = async () => {
     const cep = watch("cep").replace(/\D/g, "");
     const isValidCep = /^\d{8}$/.test(cep);
