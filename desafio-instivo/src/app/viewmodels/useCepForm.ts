@@ -5,6 +5,7 @@ import { useState } from "react";
 import { getAddressByCep } from "../services/cepService";
 import { TEXTS } from "../constants/texts";
 import { z } from "zod";
+import { formatZipCode } from "../utils/zipCodeMask";
 
 export type FormData = z.infer<typeof schema>;
 
@@ -33,28 +34,32 @@ export const useCepForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleCepBlur = async () => {
-    const cep = watch("cep").replace(/\D/g, "");
-    const isValidCep = /^\d{8}$/.test(cep);
-
+    const cep = watch("cep").replace(/\D/g, ""); 
+    const formattedCep = formatZipCode(cep); 
+    setValue("cep", formattedCep); 
+  
+    const isValidCep = /^\d{8}$/.test(formattedCep.replace(/\D/g, "")); 
+  
     if (!isValidCep) {
-      setError("cep", { type: "manual", message: "CEP inválido" });
+      setError("cep", { type: "manual", message: TEXTS.cepInvalido }); 
       return;
     }
-
+  
     setLoading(true);
     try {
-      const data = await getAddressByCep(cep);
+      const data = await getAddressByCep(formattedCep.replace(/\D/g, ""));
+      
       if (data) {
         (["logradouro", "bairro", "cidade", "estado", "complemento"] as const).forEach((field) => {
           setValue(field, data[field] || "");
         });
-        setError("cep", { type: "manual", message: "" });
+        setError("cep", { type: "manual", message: "" }); 
       } else {
-        setError("cep", { type: "manual", message: "CEP não encontrado" });
+        setError("cep", { type: "manual", message: TEXTS.cepNaoEncontrado }); 
       }
     } catch (error) {
-      console.error(TEXTS.buscaCep, error);
-      setError("cep", { type: "manual", message: "Erro ao buscar o CEP" });
+      console.error(TEXTS.erroBuscarCep, error);
+      setError("cep", { type: "manual", message: TEXTS.erroBuscarCep }); 
     } finally {
       setLoading(false);
     }
@@ -84,6 +89,7 @@ export const useCepForm = () => {
   return {
     register,
     handleSubmit,
+    setValue, 
     handleCepBlur,
     handleClear,
     onSubmit,

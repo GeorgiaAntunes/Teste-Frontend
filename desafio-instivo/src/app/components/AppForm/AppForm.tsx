@@ -4,10 +4,16 @@ import { ButtonContainer, FormContainer, StyledForm } from "./AppForm.style";
 import { InputContainer } from "../FormInput/FormInput.style";
 import FormInput from "../FormInput/FormInput";
 import { FormButton } from "../FormButton/FormButton";
+import { formatZipCode } from "@/app/utils/zipCodeMask";
  
 export const AppForm: React.FC = () => {
-   const { control, handleSubmit, handleCepBlur, handleClear, onSubmit, errors, loading } = useCepForm();
- 
+   const { control, handleSubmit, handleCepBlur, handleClear, onSubmit, errors, loading, setValue } = useCepForm();
+  
+   const handleCepChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const maskedCep = formatZipCode(e.target.value); 
+    setValue("cep", maskedCep); 
+  };
+
    return (
      <FormContainer>
      <StyledForm onSubmit={handleSubmit(onSubmit)}>
@@ -17,6 +23,7 @@ export const AppForm: React.FC = () => {
            control={control}
            placeholder="CEP"
            onBlur={handleCepBlur}
+           onChange={handleCepChange} 
            error={errors.cep?.message}
          />
        </InputContainer>
@@ -79,3 +86,5 @@ export const AppForm: React.FC = () => {
      </FormContainer>
    );
  };
+
+

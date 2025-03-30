@@ -1,5 +1,6 @@
 import {  Controller } from "react-hook-form";
 import { StyledTextField } from "./FormInput.style";
+import { ChangeEvent } from "react";
 
 interface FormInputProps {
   name: string;
@@ -7,6 +8,7 @@ interface FormInputProps {
   control: any;
   placeholder: string;
   error?: string;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void; 
   onBlur?: (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
