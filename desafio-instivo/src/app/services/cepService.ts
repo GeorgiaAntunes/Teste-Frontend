@@ -7,6 +7,7 @@ export const getAddressByCep = async (cep: string) => {
     return {
       logradouro: data.logradouro || "",
       bairro: data.bairro || "",
+      complemento: data.complemento || "",
       cidade: data.localidade || "",
       estado: data.uf || "",
     };

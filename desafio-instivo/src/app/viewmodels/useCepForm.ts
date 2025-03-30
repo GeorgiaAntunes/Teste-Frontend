@@ -26,6 +26,7 @@ export const useCepForm = () => {
       bairro: "",
       cidade: "",
       estado: "",
+      complemento: "",
     },
   });
 
@@ -43,7 +44,7 @@ export const useCepForm = () => {
     try {
       const data = await getAddressByCep(cep);
       if (data) {
-        (["logradouro", "bairro", "cidade", "estado"] as const).forEach((field) => {
+        (["logradouro", "bairro", "cidade", "estado", "complemento"] as const).forEach((field) => {
           setValue(field, data[field] || "");
         });
       }
