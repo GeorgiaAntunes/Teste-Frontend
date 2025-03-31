@@ -9,6 +9,7 @@ Este projeto é um desafio de frontend que consiste na criação de um formulár
 - **Styled Components** - Estilização de componentes com temas dinâmicos
 - **Material-UI (MUI)** - Biblioteca de componentes UI
 - **Jest & Testing Library** - Testes unitários
+- **Cypress** - Testes end-to-end
 
 ## 📂 Estrutura do Projeto
 ```
@@ -16,11 +17,14 @@ Este projeto é um desafio de frontend que consiste na criação de um formulár
  |--/app
  |   |--/components    # Componentes reutilizáveis
  |   |--/pages         # Páginas do projeto
+ |   |--/constants     # Constantes
+ |   |--/schemas       # Schemas
+ |   |--/utils         # Utils
  |   |--/services      # Serviços de API (CEP, Endereços)
  |   |--/viewmodels    # Lógica do formulário
- |--/theme            # Definição de temas e estilos globais
- |--/data             # Armazena os endereços salvos em JSON
- |--/tests            # Testes unitários
+ |   |--/theme         # Definição de temas e estilos globais
+ |--/data              # Armazena os endereços salvos em JSON
+ |--/tests             # Testes unitários
 ```
 
 ## 📜 Funcionalidades
